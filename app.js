@@ -1,8 +1,8 @@
-levelDropdown = document.getElementById('dropdown');
-classInfo = document.getElementById('class-info');
-chosenMaxLevel = document.getElementById('chosen-max')
+const levelDropdown = document.getElementById('dropdown');
+const classInfo = document.getElementById('class-info');
+const chosenMaxLevel = document.getElementById('chosen-max')
 
-maxLevel = 0
+let maxLevel = 1;
 
 // list of available classes
 let classList = ['barbarian', 'bard', 'cleric', 'druid', 'fighter',
@@ -18,8 +18,27 @@ for (let i=1; i<=20; i++) {
     levelDropdown.appendChild(levelOption);
 }
 
-// select the value for the level max
-const selectMaxLevel = () => {
-    console.log(levelDropdown.value);
+// random chosen class
+const getRandomClass = () => {
+    let randomClassIndex = Math.floor(Math.random() * classList.length)
+    let randomClass = classList[randomClassIndex];
+
+    let randomClassCapitalized = randomClass[0].toUpperCase() + randomClass.substring(1);
+    return randomClassCapitalized;
 }
+
+// choose a random amount of levels for a class
+const getRandomLevel = () => {
+    let randomLevel = Math.floor((Math.random() * maxLevel) + 1);
+    return randomLevel;
+}
+
+// select the value for the level max
+levelDropdown.addEventListener('change', (e) => {
+    chosenMaxLevel.innerHTML = `${e.target.value}`;
+    maxLevel = maxLevel + parseInt(e.target.value) - 1;
+    
+    classInfo.innerHTML = `Your class is ${getRandomClass()} at Level ${getRandomLevel()}`;
+})
+
 
