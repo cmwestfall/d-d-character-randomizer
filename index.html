@@ -8,9 +8,16 @@
 </head>
 <body>
     <h1>Character Randomizer</h1>
-    <label for="dropdown" id="level-dropdown">Choose your level: </label>
-    <select name="levels" id="dropdown">
-    </select>
+    <div>
+        <label for="dropdown" id="level-dropdown" required>Choose your level: </label>
+        <select name="levels" id="dropdown" onChange='selectMaxLevel(this)' required>
+            <option value="">select here</option>
+        </select>
+        <p>Your chosen max level is: <span id="chosen-max"></span></p>
+    </div>
+    <div>
+        <p id="class-info"></p>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
