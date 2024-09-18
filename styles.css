@@ -1,4 +1,22 @@
+body {
+    background-color: rgba(252, 215, 170, 0.795);
+    color: rgba(223, 2, 2, 0.781);
+}
+
+.level-container {
+    text-align: center;
+}
+
+hr {
+    border-color: rgba(223, 2, 2, 0.781);
+    width: 100%;
+}
+
 #class-info p {
     display: flex;
     justify-content: space-between;
+}
+
+.form-title {
+    text-decoration: underline;
 }
