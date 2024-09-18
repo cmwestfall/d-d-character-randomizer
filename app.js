@@ -38,20 +38,31 @@ levelDropdown.addEventListener('change', (e) => {
     chosenMaxLevel.innerHTML = `${e.target.value}`;
     maxLevel = maxLevel + parseInt(e.target.value) - 1;
 
+    levelDropdown.disabled = true;
+    usedClasses = [];
+
 // gives levels and classes until all levels have been filled
     while (maxLevel > 0) {
         let randomLevel = getRandomLevel();
+        let randomClass = getRandomClass();
 
-        if (randomLevel <= maxLevel) {
-            let newParagraph = document.createElement('p');
-            newParagraph.innerHTML = `Your class is ${getRandomClass()} at Level ${randomLevel}`;
-            classInfo.appendChild(newParagraph);
-            
-            maxLevel = maxLevel - randomLevel;
-            console.log(maxLevel);
+        if (usedClasses.includes(randomClass)) {
+            continue;
         } else {
-            break;
+            usedClasses.push(randomClass);
+            
+            if (randomLevel <= maxLevel) {
+                let newParagraph = document.createElement('p');
+                newParagraph.innerHTML = `<span>${randomClass}</span>
+                                          <span>Lvl ${randomLevel}</span>`;
+                classInfo.appendChild(newParagraph);
+                
+                maxLevel = maxLevel - randomLevel;
+            } else {
+                break;
+            }
         }
+
     }
 })
 
