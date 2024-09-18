@@ -37,8 +37,22 @@ const getRandomLevel = () => {
 levelDropdown.addEventListener('change', (e) => {
     chosenMaxLevel.innerHTML = `${e.target.value}`;
     maxLevel = maxLevel + parseInt(e.target.value) - 1;
-    
-    classInfo.innerHTML = `Your class is ${getRandomClass()} at Level ${getRandomLevel()}`;
+
+// gives levels and classes until all levels have been filled
+    while (maxLevel > 0) {
+        let randomLevel = getRandomLevel();
+
+        if (randomLevel <= maxLevel) {
+            let newParagraph = document.createElement('p');
+            newParagraph.innerHTML = `Your class is ${getRandomClass()} at Level ${randomLevel}`;
+            classInfo.appendChild(newParagraph);
+            
+            maxLevel = maxLevel - randomLevel;
+            console.log(maxLevel);
+        } else {
+            break;
+        }
+    }
 })
 
 
