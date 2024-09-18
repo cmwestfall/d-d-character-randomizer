@@ -2,7 +2,7 @@ levelDropdown = document.getElementById('dropdown');
 classInfo = document.getElementById('class-info');
 chosenMaxLevel = document.getElementById('chosen-max')
 
-let levelCount = 0;
+maxLevel = 0
 
 // list of available classes
 let classList = ['barbarian', 'bard', 'cleric', 'druid', 'fighter',
@@ -20,11 +20,11 @@ for (let i=1; i<=20; i++) {
 
 // select Max Level for character
 const selectMaxLevel = (selectedValue) => {
-    const maxLevel = selectedValue.value;
-    chosenMaxLevel.textContent = maxLevel;
+    const selectedMaxLevel = selectedValue.value;
+    chosenMaxLevel.textContent = selectedMaxLevel;
 }
 
-const radomizeCharacter = () => {
+const randomizeCharacter = () => {
 
     // random chosen class
     const getRandomClass = () => {
@@ -37,12 +37,15 @@ const radomizeCharacter = () => {
     
     // random chosen level
     const getRandomLevel = (maxLevel) => {
+        let levelCount = 0;
+
         if (levelCount <= maxLevel) {
             let randomLevel = Math.floor(Math.random() * maxLevel);
-            console.log(randomLevel);
+            return randomLevel;
         }
     }
 
-    classInfo.innerHTML = `Your class is ${getRandomClass()} at Level`;
+    classInfo.innerHTML = `<p>Your class is ${getRandomClass()} at Level ${getRandomLevel(maxLevel)}<p>`;
 }
 
+randomizeCharacter();
