@@ -25,3 +25,8 @@ hr {
 .form-title {
     text-decoration: underline;
 }
+
+.section-divider {
+    height: 30px;
+    background-color: brown;
+}
