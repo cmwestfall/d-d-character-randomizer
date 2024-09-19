@@ -46,16 +46,20 @@ levelDropdown.addEventListener('change', (e) => {
         let randomLevel = getRandomLevel();
         let randomClass = getRandomClass();
 
+// checks whether the random class is already used
         if (usedClasses.includes(randomClass)) {
             continue;
         } else {
             usedClasses.push(randomClass);
-            
+
+// adds the class/level combination as long as there are still levels to fill
             if (randomLevel <= maxLevel) {
-                let newParagraph = document.createElement('p');
-                newParagraph.innerHTML = `<span>${randomClass}</span>
-                                          <span>Lvl ${randomLevel}</span>`;
-                classInfo.appendChild(newParagraph);
+                let newContainer = document.createElement('div');
+                newContainer.innerHTML = `<div class='class-container'>
+                                            <span>${randomClass}</span>
+                                            <span id='lvl${randomLevel}' class='class-level'>Lvl ${randomLevel}</span>
+                                          </div>`;
+                classInfo.appendChild(newContainer);
                 
                 maxLevel = maxLevel - randomLevel;
             } else {
@@ -64,6 +68,21 @@ levelDropdown.addEventListener('change', (e) => {
         }
 
     }
+
+    const classLevels = document.querySelectorAll('.class-level');
+
+    classLevels.forEach((classLevel) => {
+        if (classLevel.id.slice(3) >= 3) {
+            let subclassDropdownContainer = document.createElement('div');
+            subclassDropdownContainer.innerHTML = `<select>
+                                                        <option>Subclass</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                   <select>`;
+
+            classLevel.parentElement.parentElement.appendChild(subclassDropdownContainer);
+        }
+    })
 })
 
 

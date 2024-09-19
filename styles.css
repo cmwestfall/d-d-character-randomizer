@@ -17,6 +17,11 @@ hr {
     justify-content: space-between;
 }
 
+.class-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .form-title {
     text-decoration: underline;
 }
